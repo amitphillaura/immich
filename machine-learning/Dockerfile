@@ -2,7 +2,7 @@ ARG DEVICE=cpu
 
 FROM python:3.11-bookworm@sha256:121d86b6d08752968a7dddbc708849e5f3a839bbff47f32212b46d2a1d842bab AS builder-cpu
 
-FROM python:3.13-slim-trixie@sha256:b04b5d7233d2ad9c379e22ea8927cd1378cd15c60d4ef876c065b25ea8fb3bf3 AS builder-openvino
+FROM python:3.13-slim-trixie@sha256:4d96149461c3d03a5c8b2774494768e25142904fa1a6c210310675454b38b40f AS builder-openvino
 
 FROM builder-cpu AS builder-cuda
 
@@ -44,7 +44,7 @@ FROM python:3.11-slim-bookworm@sha256:8dca233de9f3d9bb410665f00a4da6dd06f3310831
 ENV LD_PRELOAD=/usr/lib/libmimalloc.so.2 \
     MACHINE_LEARNING_MODEL_ARENA=false
 
-FROM python:3.13-slim-trixie@sha256:b04b5d7233d2ad9c379e22ea8927cd1378cd15c60d4ef876c065b25ea8fb3bf3 AS prod-openvino
+FROM python:3.13-slim-trixie@sha256:4d96149461c3d03a5c8b2774494768e25142904fa1a6c210310675454b38b40f AS prod-openvino
 
 RUN apt-get update && \
     apt-get install --no-install-recommends -yqq ocl-icd-libopencl1 wget && \
